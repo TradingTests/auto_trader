@@ -1,0 +1,38 @@
+name: Run AutoTrader Backend Every 5 Minutes
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run backend
+        run: python backend/run_backend.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "autotrader-bot"
+          git config user.email "autotrader-bot@users.noreply.github.com"
+          git add backend/data backend/results
+          git diff --cached --quiet || git commit -m "chore: update snapshots & results"
+          git push
