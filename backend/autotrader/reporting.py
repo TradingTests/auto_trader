@@ -6,18 +6,21 @@ from dataclasses import asdict
 
 
 def _sanitize_for_json(x):
-    # Make output strict-JSON (no NaN/Infinity) so browsers can parse it
+    """Make output strict-JSON (no NaN/Infinity)"""
     if x is None:
         return None
 
-    # basic scalars
-    if isinstance(x, bool) or isinstance(x, int) or isinstance(x, str):
+    if isinstance(x, bool):
+        return x
+    if isinstance(x, int):
+        return x
+    if isinstance(x, str):
         return x
 
     if isinstance(x, float):
         return x if math.isfinite(x) else None
 
-    # numpy/pandas scalars (best-effort without importing numpy)
+    # numpy/pandas scalars
     t = type(x).__name__.lower()
     if "float" in t or "int" in t:
         try:
@@ -32,41 +35,63 @@ def _sanitize_for_json(x):
     if isinstance(x, (list, tuple)):
         return [_sanitize_for_json(v) for v in x]
 
-    # fallback: stringify unknown objects
     return str(x)
 
 
-def write_results_bundle(result, out_dir: str):
+def write_results(result, out_dir: str = "backend/results"):
+    """
+    Write only TWO files:
+    - latest.json: Current state (overwritten each run)
+    - history.json: Append-only daily summaries (compact)
+    """
     os.makedirs(out_dir, exist_ok=True)
-
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    run_name = f"run_{ts}.json"
 
     payload = _sanitize_for_json(asdict(result))
 
-    # write timestamped run
-    with open(os.path.join(out_dir, run_name), "w", encoding="utf-8") as f:
+    # 1) Always overwrite latest.json
+    latest_path = os.path.join(out_dir, "latest.json")
+    with open(latest_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2, allow_nan=False)
 
-    # update latest
-    with open(os.path.join(out_dir, "latest.json"), "w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2, allow_nan=False)
+    # 2) Append to daily history (one entry per run, but capped)
+    history_path = os.path.join(out_dir, "history.json")
+    
+    history = []
+    if os.path.exists(history_path):
+        try:
+            with open(history_path, "r", encoding="utf-8") as f:
+                history = json.load(f)
+            if not isinstance(history, list):
+                history = []
+        except Exception:
+            history = []
+    
+    # Compact summary entry
+    summary_entry = {
+        "ts": result.generated_at if hasattr(result, 'generated_at') else datetime.now(timezone.utc).isoformat(),
+        "value": payload.get("portfolio_value"),
+        "cash": payload.get("cash"),
+        "pnl_pct": payload.get("pnl_pct"),
+        "trades": payload.get("total_trades"),
+        "actions": len(payload.get("actions_this_run", [])),
+        "holdings": list(payload.get("holdings", {}).keys()),
+    }
+    
+    history.append(summary_entry)
+    
+    # Keep only last 2000 entries (~1 week at 5min intervals)
+    if len(history) > 2000:
+        history = history[-2000:]
+    
+    with open(history_path, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=1, allow_nan=False)
 
-    # update index.json (list runs)
-    runs = []
-    for fn in sorted(os.listdir(out_dir)):
-        if fn.startswith("run_") and fn.endswith(".json"):
-            runs.append(fn)
-
-    with open(os.path.join(out_dir, "index.json"), "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "updated_at": datetime.now(timezone.utc).isoformat(),
-                "runs": runs[-200:],
-                "latest": "latest.json",
-            },
-            f,
-            ensure_ascii=False,
-            indent=2,
-            allow_nan=False,
-        )
+    # 3) Write simple index
+    index_path = os.path.join(out_dir, "index.json")
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "latest": "latest.json",
+            "history": "history.json",
+            "total_history_points": len(history),
+        }, f, ensure_ascii=False, indent=2, allow_nan=False)
