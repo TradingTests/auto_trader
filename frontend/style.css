@@ -1,9 +1,117 @@
-body { font-family: ui-sans-serif, system-ui, Arial; background:#0b0e14; color:#e6e6e6; margin:0; }
-.wrap { max-width: 1100px; margin: 0 auto; padding: 18px; }
-.card { background:#121826; border:1px solid #273048; padding: 14px; border-radius: 10px; margin: 12px 0; }
-h1, h2 { margin: 6px 0 12px; }
-pre { white-space: pre-wrap; word-break: break-word; background:#0b0e14; padding: 10px; border-radius: 8px; border:1px solid #273048; }
-table { width:100%; border-collapse: collapse; }
-th, td { border-bottom: 1px solid #273048; padding: 8px; text-align:left; font-size: 14px; }
-a { color:#7aa2ff; text-decoration:none; }
-.small { opacity: 0.85; font-size: 13px; }
+* { box-sizing: border-box; }
+
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0e17;
+  color: #e6e6e6;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.wrap { 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 { 
+  margin: 0 0 5px;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: #888;
+  margin: 0 0 20px;
+}
+
+h2 { 
+  margin: 0 0 15px;
+  font-size: 1.1rem;
+  color: #aaa;
+}
+
+.card { 
+  background: #12161f;
+  border: 1px solid #1e2736;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 700px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+.stat {
+  background: #1a1f2e;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.stat-value.small {
+  font-size: 0.85rem;
+}
+
+.positive { color: #22c55e; }
+.negative { color: #ef4444; }
+
+table { 
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td { 
+  border-bottom: 1px solid #1e2736;
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  color: #888;
+  font-weight: 500;
+}
+
+tr.buy td:first-child { color: #22c55e; }
+tr.sell td:first-child { color: #ef4444; }
+
+.small { 
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.error {
+  color: #ef4444;
+  padding: 20px;
+  background: #1a0a0a;
+  border-radius: 8px;
+}
+
+canvas {
+  max-height: 300px;
+}
