@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AutoTrader Results</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <h1>AutoTrader</h1>
+
+    <section class="card">
+      <h2>Summary</h2>
+      <pre id="summary">Loading...</pre>
+    </section>
+
+    <section class="card">
+      <h2>Equity Curve</h2>
+      <canvas id="equityChart" height="90"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Latest Allocations</h2>
+      <pre id="allocations">Loading...</pre>
+    </section>
+
+    <section class="card">
+      <h2>Top Coin Scores</h2>
+      <div id="scores"></div>
+    </section>
+
+    <section class="card">
+      <h2>Trades (last 500)</h2>
+      <div id="trades"></div>
+    </section>
+
+    <section class="card">
+      <h2>Available Runs</h2>
+      <div id="runs">Loading...</div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
