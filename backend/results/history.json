@@ -43,5 +43,12 @@
   "trades": 0,
   "actions": 0,
   "holdings": []
+ },
+ {
+  "ts": "2025-12-12T11:47:33.842919+00:00",
+  "value": 997.5073,
+  "pnl_pct": -0.2493,
+  "selected_algorithm": "Trend Following (Momentum)",
+  "actions": 3
  }
 ]
