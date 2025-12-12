@@ -31,8 +31,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config user.name "autotrader-bot"
-          git config user.email "autotrader-bot@users.noreply.github.com"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"om"
           git add backend/data backend/results
           git diff --cached --quiet || git commit -m "chore: update snapshots & results"
           git push
