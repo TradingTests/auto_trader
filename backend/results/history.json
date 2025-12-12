@@ -25,5 +25,14 @@
   "trades": 0,
   "actions": 0,
   "holdings": []
+ },
+ {
+  "ts": "2025-12-12T11:14:09.396463+00:00",
+  "value": 1000.0,
+  "cash": 1000.0,
+  "pnl_pct": 0.0,
+  "trades": 0,
+  "actions": 0,
+  "holdings": []
  }
 ]
