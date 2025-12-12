@@ -3,44 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AutoTrader - Live Trading Simulation</title>
+  <title>AutoTrader</title>
   <link rel="stylesheet" href="./style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <main class="wrap">
-    <h1>🤖 AutoTrader</h1>
-    <p class="subtitle">Multi-strategy cryptocurrency trading simulation</p>
+    <h1>AutoTrader</h1>
 
-    <section class="card" id="summary">
-      <p>Loading...</p>
+    <section class="card">
+      <h2>Main Portfolio</h2>
+      <div id="mainSummary">Loading...</div>
     </section>
 
     <section class="card">
-      <h2>📈 Equity Curve</h2>
-      <canvas id="equityChart" height="100"></canvas>
-    </section>
-
-    <div class="grid-2">
-      <section class="card">
-        <h2>💰 Current Holdings</h2>
-        <div id="holdings">Loading...</div>
-      </section>
-
-      <section class="card">
-        <h2>🎯 Target Allocation</h2>
-        <div id="allocation">Loading...</div>
-      </section>
-    </div>
-
-    <section class="card">
-      <h2>📊 Coin Scores</h2>
-      <p class="small">Scores from -1 (strong sell) to +1 (strong buy), aggregated from all strategies</p>
-      <div id="scores">Loading...</div>
+      <h2>Selected Algorithm</h2>
+      <div id="selectedAlgo">Loading...</div>
+      <div id="winnerAlloc" class="small"></div>
     </section>
 
     <section class="card">
-      <h2>⚡ Latest Actions</h2>
+      <h2>Algorithm Leaderboard (Trailing Return)</h2>
+      <div id="leaderboard">Loading...</div>
+    </section>
+
+    <section class="card">
+      <h2>Equity Curve (Main)</h2>
+      <canvas id="equityChart" height="90"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Actions This Run</h2>
       <div id="actions">Loading...</div>
     </section>
   </main>
