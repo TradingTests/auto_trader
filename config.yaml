@@ -17,8 +17,16 @@ slippage_bps: 5               # extra simulation cost (5 bps = 0.05%)
 simulation_hours: 24          # "y hours" shown in frontend
 rebalance_every_minutes: 5
 
+decision_mode: best_algorithm   # "best_algorithm" or "ensemble"
+algo_min_score_to_invest: -1.0  # always invest in the best coin even if scores are negative
+algo_rank_lookback_points: 288  # 24h if runs are every 5 min (288 points)
+min_trade_notional: 5           # don't trade dust
+
+# storage control
+snapshot_retention_days: 14     # prune market_snapshots.csv to last 14 days
+
 max_positions: 3              # invest across top-N coins (forces coin switching)
-min_score_to_invest: 0.15     # if nothing beats this, stay in cash
+min_score_to_invest: 0.05     # if nothing beats this, stay in cash
 
 # Strategy weights (all strategy names from your list exist in code)
 strategy_weights:
