@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-12T09:57:21.100490+00:00",
+  "generated_at": "2025-12-12T10:31:06.517219+00:00",
   "portfolio_value": 1000.0,
   "cash": 1000.0,
   "holdings": {},
@@ -13,7 +13,7 @@
   "scores": [
     {
       "coin": "sol",
-      "score": 0.1158,
+      "score": 0.112,
       "details": {
         "strategies": {
           "Trend Following (Momentum)": {
@@ -40,18 +40,18 @@
           },
           "Market Making": {
             "w": 0.3,
-            "score": 0.8195932208755732,
+            "score": 0.7928461374668082,
             "details": {
-              "spread": 0.0024320302007332967,
-              "volume_src": 5594.9263472688
+              "spread": 0.00328916318751116,
+              "volume_src": 5741.265392755
             }
           },
           "High-Frequency Trading (HFT)": {
             "w": 0.3,
-            "score": 0.02875864579541476,
+            "score": 0.007174382719169148,
             "details": {
-              "ret_1step": 0.002875864579541476,
-              "ret_3step": 0.002875864579541476
+              "ret_1step": -0.000145195832879641,
+              "ret_3step": 0.0027302511831088783
             }
           },
           "Machine Learning / AI-Based Strategies": {
@@ -63,9 +63,9 @@
           },
           "Event-Driven Strategies": {
             "w": 0.2,
-            "score": 0.1548,
+            "score": 0.14789999999999998,
             "details": {
-              "day_change_percent": 5.16
+              "day_change_percent": 4.93
             }
           },
           "Execution Algorithms (VWAP, TWAP, POV, IS)": {
@@ -81,7 +81,7 @@
             "details": {
               "mom_6h": 0.0,
               "vol_rank": 0.5714285714285714,
-              "volume_src": 5594.9263472688
+              "volume_src": 5741.265392755
             }
           },
           "Volatility Arbitrage": {
@@ -102,11 +102,11 @@
           },
           "Liquidity Provision Bots (Crypto)": {
             "w": 0.2,
-            "score": 0.5737152546129012,
+            "score": 0.5549922962267657,
             "details": {
               "based_on": "spread_and_volume",
-              "spread": 0.0024320302007332967,
-              "volume_src": 5594.9263472688
+              "spread": 0.00328916318751116,
+              "volume_src": 5741.265392755
             }
           },
           "Pairs Trading": {
@@ -132,9 +132,9 @@
           },
           "Sentiment/NLP-Based Trading": {
             "w": 0.2,
-            "score": 0.1548,
+            "score": 0.14789999999999998,
             "details": {
-              "day_change_percent": 5.16
+              "day_change_percent": 4.93
             }
           },
           "Merger Arbitrage (Event-Driven subtype)": {
@@ -149,7 +149,7 @@
     },
     {
       "coin": "eth",
-      "score": 0.1116,
+      "score": 0.1111,
       "details": {
         "strategies": {
           "Trend Following (Momentum)": {
@@ -176,18 +176,18 @@
           },
           "Market Making": {
             "w": 0.3,
-            "score": 0.8526120648025127,
+            "score": 0.8723397151941399,
             "details": {
-              "spread": 0.0012236966708071533,
-              "volume_src": 317.6480611568
+              "spread": 0.0003908221420746137,
+              "volume_src": 315.7773185154
             }
           },
           "High-Frequency Trading (HFT)": {
             "w": 0.3,
-            "score": 0.04063626944513943,
+            "score": 0.00358237320458643,
             "details": {
-              "ret_1step": 0.0038952781327357133,
-              "ret_3step": 0.004456440838663145
+              "ret_1step": -0.0008854890482222766,
+              "ret_3step": 0.0032602655140474557
             }
           },
           "Machine Learning / AI-Based Strategies": {
@@ -199,9 +199,9 @@
           },
           "Event-Driven Strategies": {
             "w": 0.2,
-            "score": 0.0537,
+            "score": 0.052199999999999996,
             "details": {
-              "day_change_percent": 1.79
+              "day_change_percent": 1.74
             }
           },
           "Execution Algorithms (VWAP, TWAP, POV, IS)": {
@@ -213,11 +213,11 @@
           },
           "Multi-Factor / Factor Investing": {
             "w": 0.8,
-            "score": 0.27038543876244764,
+            "score": 0.2703457425597542,
             "details": {
               "mom_6h": 0.0,
               "vol_rank": 0.5714285714285714,
-              "volume_src": 317.6480611568
+              "volume_src": 315.7773185154
             }
           },
           "Volatility Arbitrage": {
@@ -238,11 +238,11 @@
           },
           "Liquidity Provision Bots (Crypto)": {
             "w": 0.2,
-            "score": 0.5968284453617588,
+            "score": 0.6106378006358979,
             "details": {
               "based_on": "spread_and_volume",
-              "spread": 0.0012236966708071533,
-              "volume_src": 317.6480611568
+              "spread": 0.0003908221420746137,
+              "volume_src": 315.7773185154
             }
           },
           "Pairs Trading": {
@@ -268,417 +268,9 @@
           },
           "Sentiment/NLP-Based Trading": {
             "w": 0.2,
-            "score": 0.0537,
+            "score": 0.052199999999999996,
             "details": {
-              "day_change_percent": 1.79
-            }
-          },
-          "Merger Arbitrage (Event-Driven subtype)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "not_applicable_in_crypto_stats"
-            }
-          }
-        }
-      }
-    },
-    {
-      "coin": "doge",
-      "score": 0.1114,
-      "details": {
-        "strategies": {
-          "Trend Following (Momentum)": {
-            "w": 1.0,
-            "score": 0.0,
-            "details": {
-              "mom": null
-            }
-          },
-          "Mean Reversion": {
-            "w": 0.7,
-            "score": -0.0,
-            "details": {
-              "z": null
-            }
-          },
-          "Statistical Arbitrage": {
-            "w": 0.4,
-            "score": -0.0,
-            "details": {
-              "ret_12": 0.0,
-              "cross_mean": 0.0
-            }
-          },
-          "Market Making": {
-            "w": 0.3,
-            "score": 0.8351144227398108,
-            "details": {
-              "spread": 0.001888415067519402,
-              "volume_src": 1810850.302146342
-            }
-          },
-          "High-Frequency Trading (HFT)": {
-            "w": 0.3,
-            "score": 0.047663227478971885,
-            "details": {
-              "ret_1step": 0.004732310605817025,
-              "ret_3step": 0.004845684412750906
-            }
-          },
-          "Machine Learning / AI-Based Strategies": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Event-Driven Strategies": {
-            "w": 0.2,
-            "score": 0.063,
-            "details": {
-              "day_change_percent": 2.1
-            }
-          },
-          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "modeled_via_slippage_and_tax"
-            }
-          },
-          "Multi-Factor / Factor Investing": {
-            "w": 0.8,
-            "score": 0.2714285714285714,
-            "details": {
-              "mom_6h": 0.0,
-              "vol_rank": 0.5714285714285714,
-              "volume_src": 1810850.302146342
-            }
-          },
-          "Volatility Arbitrage": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "vol_12": 0.0,
-              "vol_72": 0.0,
-              "z": 0.0
-            }
-          },
-          "Cross-Exchange Arbitrage (Crypto)": {
-            "w": 0.1,
-            "score": 0.0,
-            "details": {
-              "note": "no_external_exchange_price_in_stats"
-            }
-          },
-          "Liquidity Provision Bots (Crypto)": {
-            "w": 0.2,
-            "score": 0.5845800959178675,
-            "details": {
-              "based_on": "spread_and_volume",
-              "spread": 0.001888415067519402,
-              "volume_src": 1810850.302146342
-            }
-          },
-          "Pairs Trading": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Basket Trading": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "basket_is_allocation_method"
-            }
-          },
-          "Reinforcement Learning Trading": {
-            "w": 0.2,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Sentiment/NLP-Based Trading": {
-            "w": 0.2,
-            "score": 0.063,
-            "details": {
-              "day_change_percent": 2.1
-            }
-          },
-          "Merger Arbitrage (Event-Driven subtype)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "not_applicable_in_crypto_stats"
-            }
-          }
-        }
-      }
-    },
-    {
-      "coin": "xrp",
-      "score": 0.1086,
-      "details": {
-        "strategies": {
-          "Trend Following (Momentum)": {
-            "w": 1.0,
-            "score": 0.0,
-            "details": {
-              "mom": null
-            }
-          },
-          "Mean Reversion": {
-            "w": 0.7,
-            "score": -0.0,
-            "details": {
-              "z": null
-            }
-          },
-          "Statistical Arbitrage": {
-            "w": 0.4,
-            "score": -0.0,
-            "details": {
-              "ret_12": 0.0,
-              "cross_mean": 0.0
-            }
-          },
-          "Market Making": {
-            "w": 0.3,
-            "score": 0.8541449618343075,
-            "details": {
-              "spread": 0.0011625615763546395,
-              "volume_src": 166918.5244543501
-            }
-          },
-          "High-Frequency Trading (HFT)": {
-            "w": 0.3,
-            "score": 0.017255930868878888,
-            "details": {
-              "ret_1step": 0.0021672483844372703,
-              "ret_3step": 0.0006950640592726653
-            }
-          },
-          "Machine Learning / AI-Based Strategies": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Event-Driven Strategies": {
-            "w": 0.2,
-            "score": 0.025199999999999997,
-            "details": {
-              "day_change_percent": 0.84
-            }
-          },
-          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "modeled_via_slippage_and_tax"
-            }
-          },
-          "Multi-Factor / Factor Investing": {
-            "w": 0.8,
-            "score": 0.2714285714285714,
-            "details": {
-              "mom_6h": 0.0,
-              "vol_rank": 0.5714285714285714,
-              "volume_src": 166918.5244543501
-            }
-          },
-          "Volatility Arbitrage": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "vol_12": 0.0,
-              "vol_72": 0.0,
-              "z": 0.0
-            }
-          },
-          "Cross-Exchange Arbitrage (Crypto)": {
-            "w": 0.1,
-            "score": 0.0,
-            "details": {
-              "note": "no_external_exchange_price_in_stats"
-            }
-          },
-          "Liquidity Provision Bots (Crypto)": {
-            "w": 0.2,
-            "score": 0.5979014732840152,
-            "details": {
-              "based_on": "spread_and_volume",
-              "spread": 0.0011625615763546395,
-              "volume_src": 166918.5244543501
-            }
-          },
-          "Pairs Trading": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Basket Trading": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "basket_is_allocation_method"
-            }
-          },
-          "Reinforcement Learning Trading": {
-            "w": 0.2,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Sentiment/NLP-Based Trading": {
-            "w": 0.2,
-            "score": 0.025199999999999997,
-            "details": {
-              "day_change_percent": 0.84
-            }
-          },
-          "Merger Arbitrage (Event-Driven subtype)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "not_applicable_in_crypto_stats"
-            }
-          }
-        }
-      }
-    },
-    {
-      "coin": "ton",
-      "score": 0.1084,
-      "details": {
-        "strategies": {
-          "Trend Following (Momentum)": {
-            "w": 1.0,
-            "score": 0.0,
-            "details": {
-              "mom": null
-            }
-          },
-          "Mean Reversion": {
-            "w": 0.7,
-            "score": -0.0,
-            "details": {
-              "z": null
-            }
-          },
-          "Statistical Arbitrage": {
-            "w": 0.4,
-            "score": -0.0,
-            "details": {
-              "ret_12": 0.0,
-              "cross_mean": 0.0
-            }
-          },
-          "Market Making": {
-            "w": 0.3,
-            "score": 0.800213637153813,
-            "details": {
-              "spread": 0.0030618493570115698,
-              "volume_src": 21169.0870348934
-            }
-          },
-          "High-Frequency Trading (HFT)": {
-            "w": 0.3,
-            "score": 0.03812438726231826,
-            "details": {
-              "ret_1step": 0.0030712530712531105,
-              "ret_3step": 0.005541871921182162
-            }
-          },
-          "Machine Learning / AI-Based Strategies": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Event-Driven Strategies": {
-            "w": 0.2,
-            "score": 0.0657,
-            "details": {
-              "day_change_percent": 2.19
-            }
-          },
-          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "modeled_via_slippage_and_tax"
-            }
-          },
-          "Multi-Factor / Factor Investing": {
-            "w": 0.8,
-            "score": 0.2714285714285714,
-            "details": {
-              "mom_6h": 0.0,
-              "vol_rank": 0.5714285714285714,
-              "volume_src": 21169.0870348934
-            }
-          },
-          "Volatility Arbitrage": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "vol_12": 0.0,
-              "vol_72": 0.0,
-              "z": 0.0
-            }
-          },
-          "Cross-Exchange Arbitrage (Crypto)": {
-            "w": 0.1,
-            "score": 0.0,
-            "details": {
-              "note": "no_external_exchange_price_in_stats"
-            }
-          },
-          "Liquidity Provision Bots (Crypto)": {
-            "w": 0.2,
-            "score": 0.5601495460076691,
-            "details": {
-              "based_on": "spread_and_volume",
-              "spread": 0.0030618493570115698,
-              "volume_src": 21169.0870348934
-            }
-          },
-          "Pairs Trading": {
-            "w": 0.4,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Basket Trading": {
-            "w": 0.0,
-            "score": 0.0,
-            "details": {
-              "note": "basket_is_allocation_method"
-            }
-          },
-          "Reinforcement Learning Trading": {
-            "w": 0.2,
-            "score": 0.0,
-            "details": {
-              "note": "not_enough_data"
-            }
-          },
-          "Sentiment/NLP-Based Trading": {
-            "w": 0.2,
-            "score": 0.0657,
-            "details": {
-              "day_change_percent": 2.19
+              "day_change_percent": 1.74
             }
           },
           "Merger Arbitrage (Event-Driven subtype)": {
@@ -693,7 +285,7 @@
     },
     {
       "coin": "ada",
-      "score": 0.1013,
+      "score": 0.1095,
       "details": {
         "strategies": {
           "Trend Following (Momentum)": {
@@ -720,18 +312,18 @@
           },
           "Market Making": {
             "w": 0.3,
-            "score": 0.7508873874815936,
+            "score": 0.8417366978323277,
             "details": {
-              "spread": 0.004483246814535188,
-              "volume_src": 594809.3380730484
+              "spread": 0.001643964302489381,
+              "volume_src": 585355.0384745499
             }
           },
           "High-Frequency Trading (HFT)": {
             "w": 0.3,
-            "score": 0.0643769073660807,
+            "score": 0.06940240837732814,
             "details": {
-              "ret_1step": 0.007368671262182103,
-              "ret_3step": 0.004265402843601995
+              "ret_1step": 0.004719207173194961,
+              "ret_3step": 0.01212265272165447
             }
           },
           "Machine Learning / AI-Based Strategies": {
@@ -743,9 +335,9 @@
           },
           "Event-Driven Strategies": {
             "w": 0.2,
-            "score": 0.0015,
+            "score": 0.012599999999999998,
             "details": {
-              "day_change_percent": 0.05
+              "day_change_percent": 0.42
             }
           },
           "Execution Algorithms (VWAP, TWAP, POV, IS)": {
@@ -761,7 +353,7 @@
             "details": {
               "mom_6h": 0.0,
               "vol_rank": 0.5714285714285714,
-              "volume_src": 594809.3380730484
+              "volume_src": 585355.0384745499
             }
           },
           "Volatility Arbitrage": {
@@ -782,11 +374,11 @@
           },
           "Liquidity Provision Bots (Crypto)": {
             "w": 0.2,
-            "score": 0.5256211712371155,
+            "score": 0.5892156884826294,
             "details": {
               "based_on": "spread_and_volume",
-              "spread": 0.004483246814535188,
-              "volume_src": 594809.3380730484
+              "spread": 0.001643964302489381,
+              "volume_src": 585355.0384745499
             }
           },
           "Pairs Trading": {
@@ -812,9 +404,9 @@
           },
           "Sentiment/NLP-Based Trading": {
             "w": 0.2,
-            "score": 0.0015,
+            "score": 0.012599999999999998,
             "details": {
-              "day_change_percent": 0.05
+              "day_change_percent": 0.42
             }
           },
           "Merger Arbitrage (Event-Driven subtype)": {
@@ -828,8 +420,8 @@
       }
     },
     {
-      "coin": "btc",
-      "score": 0.0436,
+      "coin": "doge",
+      "score": 0.1087,
       "details": {
         "strategies": {
           "Trend Following (Momentum)": {
@@ -856,18 +448,18 @@
           },
           "Market Making": {
             "w": 0.3,
-            "score": 0.4733085978081342,
+            "score": 0.8285380849871098,
             "details": {
-              "spread": 0.0005416803929584059,
-              "volume_src": 10.5919957177
+              "spread": 0.002123491838183105,
+              "volume_src": 1847750.704144532
             }
           },
           "High-Frequency Trading (HFT)": {
             "w": 0.3,
-            "score": 0.029728185270891713,
+            "score": 0.028431753326786602,
             "details": {
-              "ret_1step": 0.00308242708838824,
-              "ret_3step": 0.0027170652173913457
+              "ret_1step": 0.001421464108031234,
+              "ret_3step": 0.0061605015235226546
             }
           },
           "Machine Learning / AI-Based Strategies": {
@@ -879,9 +471,9 @@
           },
           "Event-Driven Strategies": {
             "w": 0.2,
-            "score": 0.06149999999999999,
+            "score": 0.0465,
             "details": {
-              "day_change_percent": 2.05
+              "day_change_percent": 1.55
             }
           },
           "Execution Algorithms (VWAP, TWAP, POV, IS)": {
@@ -893,11 +485,11 @@
           },
           "Multi-Factor / Factor Investing": {
             "w": 0.8,
-            "score": 0.0030862574479186486,
+            "score": 0.2714285714285714,
             "details": {
               "mom_6h": 0.0,
               "vol_rank": 0.5714285714285714,
-              "volume_src": 10.5919957177
+              "volume_src": 1847750.704144532
             }
           },
           "Volatility Arbitrage": {
@@ -918,11 +510,11 @@
           },
           "Liquidity Provision Bots (Crypto)": {
             "w": 0.2,
-            "score": 0.3313160184656939,
+            "score": 0.5799766594909768,
             "details": {
               "based_on": "spread_and_volume",
-              "spread": 0.0005416803929584059,
-              "volume_src": 10.5919957177
+              "spread": 0.002123491838183105,
+              "volume_src": 1847750.704144532
             }
           },
           "Pairs Trading": {
@@ -948,9 +540,417 @@
           },
           "Sentiment/NLP-Based Trading": {
             "w": 0.2,
-            "score": 0.06149999999999999,
+            "score": 0.0465,
             "details": {
-              "day_change_percent": 2.05
+              "day_change_percent": 1.55
+            }
+          },
+          "Merger Arbitrage (Event-Driven subtype)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "not_applicable_in_crypto_stats"
+            }
+          }
+        }
+      }
+    },
+    {
+      "coin": "xrp",
+      "score": 0.1059,
+      "details": {
+        "strategies": {
+          "Trend Following (Momentum)": {
+            "w": 1.0,
+            "score": 0.0,
+            "details": {
+              "mom": null
+            }
+          },
+          "Mean Reversion": {
+            "w": 0.7,
+            "score": -0.0,
+            "details": {
+              "z": null
+            }
+          },
+          "Statistical Arbitrage": {
+            "w": 0.4,
+            "score": -0.0,
+            "details": {
+              "ret_12": 0.0,
+              "cross_mean": 0.0
+            }
+          },
+          "Market Making": {
+            "w": 0.3,
+            "score": 0.822258783180004,
+            "details": {
+              "spread": 0.002341367437284849,
+              "volume_src": 166290.5982143501
+            }
+          },
+          "High-Frequency Trading (HFT)": {
+            "w": 0.3,
+            "score": 0.016866598865765248,
+            "details": {
+              "ret_1step": 0.001477832512315258,
+              "ret_3step": 0.002173923759852814
+            }
+          },
+          "Machine Learning / AI-Based Strategies": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Event-Driven Strategies": {
+            "w": 0.2,
+            "score": 0.022199999999999998,
+            "details": {
+              "day_change_percent": 0.74
+            }
+          },
+          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "modeled_via_slippage_and_tax"
+            }
+          },
+          "Multi-Factor / Factor Investing": {
+            "w": 0.8,
+            "score": 0.2714285714285714,
+            "details": {
+              "mom_6h": 0.0,
+              "vol_rank": 0.5714285714285714,
+              "volume_src": 166290.5982143501
+            }
+          },
+          "Volatility Arbitrage": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "vol_12": 0.0,
+              "vol_72": 0.0,
+              "z": 0.0
+            }
+          },
+          "Cross-Exchange Arbitrage (Crypto)": {
+            "w": 0.1,
+            "score": 0.0,
+            "details": {
+              "note": "no_external_exchange_price_in_stats"
+            }
+          },
+          "Liquidity Provision Bots (Crypto)": {
+            "w": 0.2,
+            "score": 0.5755811482260028,
+            "details": {
+              "based_on": "spread_and_volume",
+              "spread": 0.002341367437284849,
+              "volume_src": 166290.5982143501
+            }
+          },
+          "Pairs Trading": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Basket Trading": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "basket_is_allocation_method"
+            }
+          },
+          "Reinforcement Learning Trading": {
+            "w": 0.2,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Sentiment/NLP-Based Trading": {
+            "w": 0.2,
+            "score": 0.022199999999999998,
+            "details": {
+              "day_change_percent": 0.74
+            }
+          },
+          "Merger Arbitrage (Event-Driven subtype)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "not_applicable_in_crypto_stats"
+            }
+          }
+        }
+      }
+    },
+    {
+      "coin": "ton",
+      "score": 0.1035,
+      "details": {
+        "strategies": {
+          "Trend Following (Momentum)": {
+            "w": 1.0,
+            "score": 0.0,
+            "details": {
+              "mom": null
+            }
+          },
+          "Mean Reversion": {
+            "w": 0.7,
+            "score": -0.0,
+            "details": {
+              "z": null
+            }
+          },
+          "Statistical Arbitrage": {
+            "w": 0.4,
+            "score": -0.0,
+            "details": {
+              "ret_12": 0.0,
+              "cross_mean": 0.0
+            }
+          },
+          "Market Making": {
+            "w": 0.3,
+            "score": 0.7796025531516095,
+            "details": {
+              "spread": 0.003683241252302029,
+              "volume_src": 20413.9232593702
+            }
+          },
+          "High-Frequency Trading (HFT)": {
+            "w": 0.3,
+            "score": -0.007909903197295565,
+            "details": {
+              "ret_1step": -0.0024494794856093627,
+              "ret_3step": 0.0030788177339899914
+            }
+          },
+          "Machine Learning / AI-Based Strategies": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Event-Driven Strategies": {
+            "w": 0.2,
+            "score": 0.0543,
+            "details": {
+              "day_change_percent": 1.81
+            }
+          },
+          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "modeled_via_slippage_and_tax"
+            }
+          },
+          "Multi-Factor / Factor Investing": {
+            "w": 0.8,
+            "score": 0.2714285714285714,
+            "details": {
+              "mom_6h": 0.0,
+              "vol_rank": 0.5714285714285714,
+              "volume_src": 20413.9232593702
+            }
+          },
+          "Volatility Arbitrage": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "vol_12": 0.0,
+              "vol_72": 0.0,
+              "z": 0.0
+            }
+          },
+          "Cross-Exchange Arbitrage (Crypto)": {
+            "w": 0.1,
+            "score": 0.0,
+            "details": {
+              "note": "no_external_exchange_price_in_stats"
+            }
+          },
+          "Liquidity Provision Bots (Crypto)": {
+            "w": 0.2,
+            "score": 0.5457217872061266,
+            "details": {
+              "based_on": "spread_and_volume",
+              "spread": 0.003683241252302029,
+              "volume_src": 20413.9232593702
+            }
+          },
+          "Pairs Trading": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Basket Trading": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "basket_is_allocation_method"
+            }
+          },
+          "Reinforcement Learning Trading": {
+            "w": 0.2,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Sentiment/NLP-Based Trading": {
+            "w": 0.2,
+            "score": 0.0543,
+            "details": {
+              "day_change_percent": 1.81
+            }
+          },
+          "Merger Arbitrage (Event-Driven subtype)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "not_applicable_in_crypto_stats"
+            }
+          }
+        }
+      }
+    },
+    {
+      "coin": "btc",
+      "score": 0.0439,
+      "details": {
+        "strategies": {
+          "Trend Following (Momentum)": {
+            "w": 1.0,
+            "score": 0.0,
+            "details": {
+              "mom": null
+            }
+          },
+          "Mean Reversion": {
+            "w": 0.7,
+            "score": -0.0,
+            "details": {
+              "z": null
+            }
+          },
+          "Statistical Arbitrage": {
+            "w": 0.4,
+            "score": -0.0,
+            "details": {
+              "ret_12": 0.0,
+              "cross_mean": 0.0
+            }
+          },
+          "Market Making": {
+            "w": 0.3,
+            "score": 0.4737730554127645,
+            "details": {
+              "spread": 0.0005300162249864792,
+              "volume_src": 10.6128065399
+            }
+          },
+          "High-Frequency Trading (HFT)": {
+            "w": 0.3,
+            "score": 0.029852346163835586,
+            "details": {
+              "ret_1step": 0.002168347588622499,
+              "ret_3step": 0.004891304347826031
+            }
+          },
+          "Machine Learning / AI-Based Strategies": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Event-Driven Strategies": {
+            "w": 0.2,
+            "score": 0.0645,
+            "details": {
+              "day_change_percent": 2.15
+            }
+          },
+          "Execution Algorithms (VWAP, TWAP, POV, IS)": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "modeled_via_slippage_and_tax"
+            }
+          },
+          "Multi-Factor / Factor Investing": {
+            "w": 0.8,
+            "score": 0.003147993331359275,
+            "details": {
+              "mom_6h": 0.0,
+              "vol_rank": 0.5714285714285714,
+              "volume_src": 10.6128065399
+            }
+          },
+          "Volatility Arbitrage": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "vol_12": 0.0,
+              "vol_72": 0.0,
+              "z": 0.0
+            }
+          },
+          "Cross-Exchange Arbitrage (Crypto)": {
+            "w": 0.1,
+            "score": 0.0,
+            "details": {
+              "note": "no_external_exchange_price_in_stats"
+            }
+          },
+          "Liquidity Provision Bots (Crypto)": {
+            "w": 0.2,
+            "score": 0.33164113878893514,
+            "details": {
+              "based_on": "spread_and_volume",
+              "spread": 0.0005300162249864792,
+              "volume_src": 10.6128065399
+            }
+          },
+          "Pairs Trading": {
+            "w": 0.4,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Basket Trading": {
+            "w": 0.0,
+            "score": 0.0,
+            "details": {
+              "note": "basket_is_allocation_method"
+            }
+          },
+          "Reinforcement Learning Trading": {
+            "w": 0.2,
+            "score": 0.0,
+            "details": {
+              "note": "not_enough_data"
+            }
+          },
+          "Sentiment/NLP-Based Trading": {
+            "w": 0.2,
+            "score": 0.0645,
+            "details": {
+              "day_change_percent": 2.15
             }
           },
           "Merger Arbitrage (Event-Driven subtype)": {
@@ -970,17 +970,22 @@
       "ts": "2025-12-12T09:57:21.100490+00:00",
       "value": 1000.0,
       "cash": 1000.0
+    },
+    {
+      "ts": "2025-12-12T10:31:06.517219+00:00",
+      "value": 1000.0,
+      "cash": 1000.0
     }
   ],
   "strategy_contributions": {},
   "debug": {
     "prices": {
       "ton": 1.63,
-      "ada": 0.42,
-      "btc": 92249.97,
+      "ada": 0.43,
+      "btc": 92450.0,
       "doge": 0.14,
-      "eth": 3252.44,
-      "sol": 137.75,
+      "eth": 3249.56,
+      "sol": 137.72,
       "xrp": 2.03
     }
   }
