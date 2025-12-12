@@ -20,7 +20,8 @@ class AlgoState:
 @dataclass
 class PortfolioState:
     """Persisted across runs - this is the 'memory' of the trader"""
-    
+    algo_states: Dict[str, dict] = field(default_factory=dict)   # persisted as plain dict for JSON simplicity
+    selected_algorithm: str = ""
     # Current holdings
     cash: float = 1000.0
     holdings: Dict[str, float] = field(default_factory=dict)  # coin -> quantity
