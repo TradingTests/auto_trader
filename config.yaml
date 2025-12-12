@@ -1,6 +1,5 @@
 quote_currency: usdt
 
-# Coins to consider (srcCurrency). Must match Nobitex currency codes.
 coins:
   - btc
   - eth
@@ -10,25 +9,31 @@ coins:
   - ada
   - ton
 
-starting_cash: 1000           # default per your spec (virtual money, USDT)
-tax_percent: 0.2              # percent per trade (0.2 => 0.2%)
-slippage_bps: 5               # extra simulation cost (5 bps = 0.05%)
+starting_cash: 1000
+tax_percent: 0.2
+slippage_bps: 5
 
-simulation_hours: 24          # "y hours" shown in frontend
+# UI/history window (what you see in frontend)
+simulation_hours: 24
+
 rebalance_every_minutes: 5
 
-decision_mode: best_algorithm   # "best_algorithm" or "ensemble"
-algo_min_score_to_invest: -1.0  # always invest in the best coin even if scores are negative
-algo_rank_lookback_points: 288  # 24h if runs are every 5 min (288 points)
-min_trade_notional: 5           # don't trade dust
+# portfolio construction
+max_positions: 3
+min_score_to_invest: 0.02        # main portfolio threshold (lower = more action)
+
+# ---- Algorithm race / ranking ----
+decision_mode: best_algorithm     # best_algorithm | ensemble (ensemble not implemented here)
+algo_min_score_to_invest: -1.0    # algorithms always invest in their top choices
+algo_rank_lookback_points: 288    # 24h at 5-min runs (288 points)
+
+# execution control
+min_trade_notional: 5             # ignore trades smaller than $5
 
 # storage control
-snapshot_retention_days: 14     # prune market_snapshots.csv to last 14 days
+snapshot_retention_days: 14       # prune backend/data/market_snapshots.csv to last N days
+max_history_points: 4000          # bound portfolio equity history stored in state/results
 
-max_positions: 3              # invest across top-N coins (forces coin switching)
-min_score_to_invest: 0.05     # if nothing beats this, stay in cash
-
-# Strategy weights (all strategy names from your list exist in code)
 strategy_weights:
   Trend Following (Momentum): 1.0
   Mean Reversion: 0.7
