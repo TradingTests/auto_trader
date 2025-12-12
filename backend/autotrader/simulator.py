@@ -1,228 +1,376 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Dict, List, Any
+from dataclasses import dataclass, field
+from typing import Dict, List, Any, Tuple
 import pandas as pd
 import numpy as np
 
 from .config import Config
 from .strategies import compute_all_scores
+from .state import PortfolioState, get_portfolio_value
 
 
 @dataclass
+class TradeAction:
+    ts: str
+    action: str  # BUY, SELL, HOLD
+    coin: str
+    qty: float
+    price: float
+    notional: float
+    tax: float
+    reason: str
+    score: float = 0.0
+
+
+@dataclass 
 class SimulationResult:
     generated_at: str
-    period: dict
-    summary: dict
-    equity_curve: List[dict]
-    trades: List[dict]
-    latest_scores: List[dict]
-    latest_allocations: Dict[str, float]
-    debug: Dict[str, Any]
+    portfolio_value: float
+    cash: float
+    holdings: Dict[str, float]
+    pnl_total: float
+    pnl_pct: float
+    high_water_mark: float
+    max_drawdown_pct: float
+    total_trades: int
+    total_tax_paid: float
+    
+    # What happened this run
+    actions_this_run: List[dict]
+    scores: List[dict]
+    target_allocations: Dict[str, float]
+    
+    # For charts
+    equity_history: List[dict]
+    
+    # Strategy performance
+    strategy_contributions: Dict[str, float]
+    
+    # Debug
+    debug: Dict[str, Any] = field(default_factory=dict)
 
 
-def _now_iso():
-    return pd.Timestamp.utcnow().isoformat()
+def _now_iso() -> str:
+    return pd.Timestamp.now(tz="UTC").isoformat()
 
 
-def _portfolio_value(cash: float, holdings: Dict[str, float], prices: Dict[str, float]) -> float:
-    v = cash
-    for coin, qty in holdings.items():
-        px = prices.get(coin)
-        if px is None or not np.isfinite(px) or px <= 0:
-            continue
-        v += qty * px
-    return float(v)
-
-
-def _get_prices_at(df_ts: pd.DataFrame) -> Dict[str, float]:
-    # df for one timestamp, rows per src
-    out = {}
-    for _, r in df_ts.iterrows():
-        out[str(r["src"]).lower()] = float(r["latest"])
-    return out
-
-
-def _select_targets(scores: Dict[str, float], max_positions: int, min_score: float) -> Dict[str, float]:
-    # returns weights per coin, sums to <=1 (rest is cash)
-    items = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
-    chosen = [(c, s) for c, s in items if s >= min_score][:max_positions]
-    if not chosen:
+def _get_current_prices(df: pd.DataFrame) -> Dict[str, float]:
+    """Get latest price for each coin from the most recent snapshot"""
+    if df.empty:
         return {}
-    w = 1.0 / len(chosen)
-    return {c: w for c, _ in chosen}
+    
+    latest = df.sort_values("ts").groupby("src").tail(1)
+    return {str(row["src"]): float(row["latest"]) for _, row in latest.iterrows()}
 
 
-def run_simulation(cfg: Config, history: pd.DataFrame) -> SimulationResult:
-    if history.empty:
-        return SimulationResult(
-            generated_at=_now_iso(),
-            period={"start": None, "end": None, "hours": cfg.simulation_hours},
-            summary={"note": "no_history_yet"},
-            equity_curve=[],
-            trades=[],
-            latest_scores=[],
-            latest_allocations={},
-            debug={},
-        )
+def _select_targets(
+    scores: Dict[str, float], 
+    max_positions: int, 
+    min_score: float,
+    prices: Dict[str, float]
+) -> Dict[str, float]:
+    """
+    Select target allocation weights based on scores.
+    Returns {coin: weight} where weights sum to <= 1.0 (rest is cash)
+    """
+    # Filter coins with valid prices and good scores
+    valid = [(c, s) for c, s in scores.items() if s >= min_score and prices.get(c, 0) > 0]
+    valid = sorted(valid, key=lambda x: x[1], reverse=True)[:max_positions]
+    
+    if not valid:
+        return {}  # Stay in cash
+    
+    # Weight by score (higher score = more allocation)
+    total_score = sum(s for _, s in valid)
+    if total_score <= 0:
+        # Equal weight if all scores are similar
+        w = 1.0 / len(valid)
+        return {c: w for c, _ in valid}
+    
+    # Score-weighted allocation
+    weights = {}
+    for c, s in valid:
+        # Normalize and ensure positive weights
+        w = max(0.05, s / total_score)  # min 5% if selected
+        weights[c] = w
+    
+    # Normalize to sum to 1.0
+    total = sum(weights.values())
+    return {c: w / total for c, w in weights.items()}
 
-    # Ensure evenly sorted
-    history = history.sort_values(["ts", "src"]).reset_index(drop=True)
-    ts_list = history["ts"].drop_duplicates().tolist()
 
-    cash = float(cfg.starting_cash)
-    holdings: Dict[str, float] = {}
-    equity_curve = []
-    trades: List[dict] = []
-    tax_paid = 0.0
-
-    # rebalance each snapshot (5min) by default; you can change to coarser if desired
-    for i, ts in enumerate(ts_list):
-        df_ts = history[history["ts"] == ts]
-        prices = _get_prices_at(df_ts)
-
-        # compute scores using data up to this timestamp
-        panel = history[history["ts"] <= ts]
-        scores, score_details = compute_all_scores(panel, cfg.strategy_weights)
-
-        target_w = _select_targets(scores, cfg.max_positions, cfg.min_score_to_invest)
-
-        value = _portfolio_value(cash, holdings, prices)
-
-        # current weights
-        current_w = {}
-        for c, qty in holdings.items():
-            px = prices.get(c)
-            if px and px > 0:
-                current_w[c] = (qty * px) / value
-
-        # Rebalance: sell what is not in target, then buy target
-        # 1) Sell
-        for c in list(holdings.keys()):
-            if c not in target_w:
-                px = prices.get(c)
-                if not px or px <= 0:
-                    continue
-                qty = holdings[c]
-                notional = qty * px
-                # slippage on sell => worse price
-                exec_px = px * (1.0 - cfg.slippage_rate)
-                proceeds = qty * exec_px
-                tax = proceeds * cfg.tax_rate
-                cash += (proceeds - tax)
-                tax_paid += tax
-                trades.append(
-                    {
-                        "ts": str(ts),
-                        "type": "SELL",
-                        "coin": c,
-                        "qty": qty,
-                        "price": exec_px,
-                        "notional": proceeds,
-                        "tax": tax,
-                        "reason": "not_in_target",
-                    }
-                )
-                del holdings[c]
-
-        # recompute value after sells
-        value = _portfolio_value(cash, holdings, prices)
-
-        # 2) Buy / adjust to target weights
-        # Convert target weights to target quantities
-        targets_qty = {}
-        for c, w in target_w.items():
-            px = prices.get(c)
-            if not px or px <= 0:
+def execute_rebalance(
+    state: PortfolioState,
+    target_weights: Dict[str, float],
+    prices: Dict[str, float],
+    scores: Dict[str, float],
+    cfg: Config,
+) -> Tuple[List[TradeAction], Dict[str, float]]:
+    """
+    Execute trades to move from current holdings to target weights.
+    Returns list of trades and strategy contribution estimates.
+    """
+    actions = []
+    strategy_contrib = {}
+    
+    current_value = get_portfolio_value(state, prices)
+    if current_value <= 0:
+        return actions, strategy_contrib
+    
+    # Calculate current weights
+    current_weights = {"cash": state.cash / current_value}
+    for coin, qty in state.holdings.items():
+        px = prices.get(coin, 0)
+        if px > 0:
+            current_weights[coin] = (qty * px) / current_value
+    
+    ts = _now_iso()
+    
+    # 1) SELL coins not in target or overweight
+    for coin in list(state.holdings.keys()):
+        current_w = current_weights.get(coin, 0)
+        target_w = target_weights.get(coin, 0)
+        
+        if target_w < current_w:
+            # Need to sell some or all
+            px = prices.get(coin, 0)
+            if px <= 0:
                 continue
-            target_value = value * w
-            targets_qty[c] = target_value / px
-
-        # Execute buys/adjustments (only buys in this simplified approach after selling non-targets)
-        for c, tgt_qty in targets_qty.items():
-            px = prices.get(c)
-            if not px or px <= 0:
+            
+            current_qty = state.holdings[coin]
+            target_qty = (target_w * current_value) / px
+            sell_qty = current_qty - target_qty
+            
+            if sell_qty < 0.0000001:
                 continue
-            cur_qty = holdings.get(c, 0.0)
-            delta = tgt_qty - cur_qty
-            if delta <= 1e-12:
-                holdings[c] = cur_qty
+            
+            # Execute sell with slippage
+            exec_px = px * (1.0 - cfg.slippage_rate)
+            proceeds = sell_qty * exec_px
+            tax = proceeds * cfg.tax_rate
+            net_proceeds = proceeds - tax
+            
+            # Calculate realized PnL (simplified - avg cost basis would be better)
+            
+            # Update state
+            state.cash += net_proceeds
+            state.holdings[coin] -= sell_qty
+            if state.holdings[coin] < 0.0000001:
+                del state.holdings[coin]
+            
+            state.total_trades += 1
+            state.total_tax_paid += tax
+            
+            reason = "exit_position" if target_w == 0 else "reduce_position"
+            actions.append(TradeAction(
+                ts=ts,
+                action="SELL",
+                coin=coin,
+                qty=sell_qty,
+                price=exec_px,
+                notional=proceeds,
+                tax=tax,
+                reason=reason,
+                score=scores.get(coin, 0),
+            ))
+    
+    # Recalculate value after sells
+    current_value = get_portfolio_value(state, prices)
+    
+    # 2) BUY coins in target or underweight
+    for coin, target_w in target_weights.items():
+        px = prices.get(coin, 0)
+        if px <= 0:
+            continue
+        
+        current_qty = state.holdings.get(coin, 0)
+        current_coin_value = current_qty * px
+        target_value = target_w * current_value
+        buy_value = target_value - current_coin_value
+        
+        if buy_value < 1.0:  # Min $1 trade
+            continue
+        
+        # Check available cash
+        exec_px = px * (1.0 + cfg.slippage_rate)
+        buy_qty = buy_value / exec_px
+        cost = buy_qty * exec_px
+        tax = cost * cfg.tax_rate
+        total_cost = cost + tax
+        
+        if total_cost > state.cash:
+            # Scale down to available cash
+            scale = (state.cash * 0.99) / total_cost  # Keep 1% buffer
+            if scale < 0.1:
                 continue
-
-            # buy with slippage
-            exec_px = px * (1.0 + cfg.slippage_rate)
-            cost = delta * exec_px
+            buy_qty *= scale
+            cost = buy_qty * exec_px
             tax = cost * cfg.tax_rate
             total_cost = cost + tax
+        
+        if buy_qty < 0.0000001:
+            continue
+        
+        # Execute buy
+        state.cash -= total_cost
+        state.holdings[coin] = state.holdings.get(coin, 0) + buy_qty
+        state.total_trades += 1
+        state.total_tax_paid += tax
+        
+        reason = "new_position" if current_qty == 0 else "increase_position"
+        actions.append(TradeAction(
+            ts=ts,
+            action="BUY",
+            coin=coin,
+            qty=buy_qty,
+            price=exec_px,
+            notional=cost,
+            tax=tax,
+            reason=reason,
+            score=scores.get(coin, 0),
+        ))
+        
+        # Track which strategies contributed to this buy
+        strategy_contrib[coin] = scores.get(coin, 0)
+    
+    return actions, strategy_contrib
 
-            # if not enough cash, scale down
-            if total_cost > cash and cash > 0:
-                scale = cash / total_cost
-                delta *= scale
-                cost = delta * exec_px
-                tax = cost * cfg.tax_rate
-                total_cost = cost + tax
 
-            if delta <= 1e-12:
-                continue
-
-            cash -= total_cost
-            tax_paid += tax
-            holdings[c] = cur_qty + delta
-            trades.append(
-                {
-                    "ts": str(ts),
-                    "type": "BUY",
-                    "coin": c,
-                    "qty": delta,
-                    "price": exec_px,
-                    "notional": cost,
-                    "tax": tax,
-                    "reason": "rebalance_to_target",
-                }
-            )
-
-        # mark-to-market
-        value = _portfolio_value(cash, holdings, prices)
-        equity_curve.append({"ts": str(ts), "value": value, "cash": cash})
-
-    start_ts = str(ts_list[0]) if ts_list else None
-    end_ts = str(ts_list[-1]) if ts_list else None
-    ending_value = equity_curve[-1]["value"] if equity_curve else cfg.starting_cash
-    pnl = ending_value - cfg.starting_cash
-    pnl_pct = (pnl / cfg.starting_cash) * 100.0 if cfg.starting_cash else 0.0
-
-    # latest scores (for UI)
-    final_panel = history
-    scores, details = compute_all_scores(final_panel, cfg.strategy_weights)
-    latest_scores = []
-    for c, sc in sorted(scores.items(), key=lambda kv: kv[1], reverse=True):
-        latest_scores.append({"coin": c, "score": sc, "details": details.get(c, {})})
-
-    # latest allocations
-    latest_prices = _get_prices_at(history[history["ts"] == ts_list[-1]])
-    latest_value = _portfolio_value(cash, holdings, latest_prices)
-    alloc = {"cash": cash / latest_value if latest_value else 1.0}
-    for c, qty in holdings.items():
-        px = latest_prices.get(c)
-        if px and px > 0:
-            alloc[c] = (qty * px) / latest_value
-
+def run_simulation(cfg: Config, history: pd.DataFrame, state: PortfolioState) -> SimulationResult:
+    """
+    Run one iteration of the trading simulation.
+    Uses and updates the persistent portfolio state.
+    """
+    ts_now = _now_iso()
+    
+    if history.empty:
+        return SimulationResult(
+            generated_at=ts_now,
+            portfolio_value=state.cash,
+            cash=state.cash,
+            holdings=dict(state.holdings),
+            pnl_total=0,
+            pnl_pct=0,
+            high_water_mark=state.high_water_mark,
+            max_drawdown_pct=0,
+            total_trades=state.total_trades,
+            total_tax_paid=state.total_tax_paid,
+            actions_this_run=[],
+            scores=[],
+            target_allocations={},
+            equity_history=state.equity_history,
+            strategy_contributions={},
+            debug={"note": "no_market_data"},
+        )
+    
+    # Get current prices
+    prices = _get_current_prices(history)
+    state.last_prices = prices
+    
+    # Calculate scores using all available history
+    scores, score_details = compute_all_scores(history, cfg.strategy_weights)
+    
+    if not scores:
+        # No valid scores, hold current positions
+        current_value = get_portfolio_value(state, prices)
+        return SimulationResult(
+            generated_at=ts_now,
+            portfolio_value=current_value,
+            cash=state.cash,
+            holdings=dict(state.holdings),
+            pnl_total=current_value - state.initial_capital,
+            pnl_pct=((current_value / state.initial_capital) - 1) * 100,
+            high_water_mark=state.high_water_mark,
+            max_drawdown_pct=state.max_drawdown_pct,
+            total_trades=state.total_trades,
+            total_tax_paid=state.total_tax_paid,
+            actions_this_run=[],
+            scores=[],
+            target_allocations={},
+            equity_history=state.equity_history,
+            strategy_contributions={},
+            debug={"note": "no_valid_scores"},
+        )
+    
+    # Determine target allocation
+    target_weights = _select_targets(
+        scores=scores,
+        max_positions=cfg.max_positions,
+        min_score=cfg.min_score_to_invest,
+        prices=prices,
+    )
+    
+    # Execute rebalance
+    actions, strategy_contrib = execute_rebalance(
+        state=state,
+        target_weights=target_weights,
+        prices=prices,
+        scores=scores,
+        cfg=cfg,
+    )
+    
+    # Update strategy PnL tracking
+    for coin, contrib in strategy_contrib.items():
+        state.strategy_pnl[coin] = state.strategy_pnl.get(coin, 0) + contrib
+    
+    # Calculate final portfolio value
+    current_value = get_portfolio_value(state, prices)
+    
+    # Update high water mark and drawdown
+    if current_value > state.high_water_mark:
+        state.high_water_mark = current_value
+    
+    drawdown = (state.high_water_mark - current_value) / state.high_water_mark * 100
+    if drawdown > state.max_drawdown_pct:
+        state.max_drawdown_pct = drawdown
+    
+    # Add to equity history
+    state.equity_history.append({
+        "ts": ts_now,
+        "value": round(current_value, 2),
+        "cash": round(state.cash, 2),
+    })
+    
+    state.last_run_at = ts_now
+    
+    # Prepare scores for output
+    scores_list = sorted(
+        [{"coin": c, "score": round(s, 4), "details": score_details.get(c, {})} 
+         for c, s in scores.items()],
+        key=lambda x: x["score"],
+        reverse=True,
+    )
+    
+    pnl_total = current_value - state.initial_capital
+    pnl_pct = ((current_value / state.initial_capital) - 1) * 100 if state.initial_capital > 0 else 0
+    
     return SimulationResult(
-        generated_at=_now_iso(),
-        period={"start": start_ts, "end": end_ts, "hours": cfg.simulation_hours},
-        summary={
-            "starting_cash": cfg.starting_cash,
-            "ending_value": ending_value,
-            "pnl": pnl,
-            "pnl_pct": pnl_pct,
-            "num_trades": len(trades),
-            "tax_paid": tax_paid,
-            "tax_percent": cfg.tax_percent,
-            "slippage_bps": cfg.slippage_bps,
+        generated_at=ts_now,
+        portfolio_value=round(current_value, 2),
+        cash=round(state.cash, 2),
+        holdings={c: round(q, 8) for c, q in state.holdings.items()},
+        pnl_total=round(pnl_total, 2),
+        pnl_pct=round(pnl_pct, 2),
+        high_water_mark=round(state.high_water_mark, 2),
+        max_drawdown_pct=round(state.max_drawdown_pct, 2),
+        total_trades=state.total_trades,
+        total_tax_paid=round(state.total_tax_paid, 2),
+        actions_this_run=[{
+            "ts": a.ts,
+            "action": a.action,
+            "coin": a.coin,
+            "qty": round(a.qty, 8),
+            "price": round(a.price, 2),
+            "notional": round(a.notional, 2),
+            "tax": round(a.tax, 4),
+            "reason": a.reason,
+            "score": round(a.score, 4),
+        } for a in actions],
+        scores=scores_list[:15],  # Top 15 only
+        target_allocations={c: round(w, 4) for c, w in target_weights.items()},
+        equity_history=state.equity_history[-500:],  # Last 500 for JSON
+        strategy_contributions=strategy_contrib,
+        debug={
+            "prices": {c: round(p, 2) for c, p in list(prices.items())[:10]},
         },
-        equity_curve=equity_curve,
-        trades=trades[-500:],  # cap for file size
-        latest_scores=latest_scores,
-        latest_allocations=alloc,
-        debug={"holdings_qty": holdings},
     )
