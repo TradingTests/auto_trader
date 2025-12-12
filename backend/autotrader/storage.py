@@ -71,6 +71,6 @@ def load_recent_history(csv_path: str, hours: int, allowed_src: set, quote_curre
     if allowed_src:
         df = df[df["src"].isin(list(allowed_src))]
 
-    cutoff = pd.Timestamp(datetime.now(timezone.utc) - timedelta(hours=hours), tz="UTC")
+    cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=hours)
     df = df[df["ts"] >= cutoff].sort_values(["ts", "src"])
     return df.reset_index(drop=True)
