@@ -1,0 +1,41 @@
+quote_currency: usdt
+
+# Coins to consider (srcCurrency). Must match Nobitex currency codes.
+coins:
+  - btc
+  - eth
+  - sol
+  - xrp
+  - doge
+  - ada
+  - ton
+
+starting_cash: 1000           # default per your spec (virtual money, USDT)
+tax_percent: 0.2              # percent per trade (0.2 => 0.2%)
+slippage_bps: 5               # extra simulation cost (5 bps = 0.05%)
+
+simulation_hours: 24          # "y hours" shown in frontend
+rebalance_every_minutes: 5
+
+max_positions: 3              # invest across top-N coins (forces coin switching)
+min_score_to_invest: 0.15     # if nothing beats this, stay in cash
+
+# Strategy weights (all strategy names from your list exist in code)
+strategy_weights:
+  Trend Following (Momentum): 1.0
+  Mean Reversion: 0.7
+  Statistical Arbitrage: 0.4
+  Market Making: 0.3
+  High-Frequency Trading (HFT): 0.3
+  Machine Learning / AI-Based Strategies: 0.4
+  Event-Driven Strategies: 0.2
+  Execution Algorithms (VWAP, TWAP, POV, IS): 0.0
+  Multi-Factor / Factor Investing: 0.8
+  Volatility Arbitrage: 0.4
+  Cross-Exchange Arbitrage (Crypto): 0.1
+  Liquidity Provision Bots (Crypto): 0.2
+  Pairs Trading: 0.4
+  Basket Trading: 0.0
+  Reinforcement Learning Trading: 0.2
+  Sentiment/NLP-Based Trading: 0.2
+  Merger Arbitrage (Event-Driven subtype): 0.0
