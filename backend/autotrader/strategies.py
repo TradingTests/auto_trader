@@ -367,3 +367,30 @@ def compute_all_scores(panel: pd.DataFrame, strategy_weights: Dict[str, float]) 
     total = {c: _clip(total[c] / denom) for c in coins}
 
     return total, detail
+
+
+def compute_packs_by_algorithm(panel: pd.DataFrame) -> Dict[str, ScorePack]:
+    panel, coins = _prep_panel(panel)
+    if panel.empty or not coins:
+        return {}
+
+    packs: Dict[str, ScorePack] = {}
+    packs["Trend Following (Momentum)"] = trend_following_momentum(panel, coins)
+    packs["Mean Reversion"] = mean_reversion(panel, coins)
+    packs["Statistical Arbitrage"] = statistical_arbitrage(panel, coins)
+    packs["Market Making"] = market_making(panel, coins)
+    packs["High-Frequency Trading (HFT)"] = hft(panel, coins)
+    packs["Machine Learning / AI-Based Strategies"] = ml_ai(panel, coins)
+    packs["Event-Driven Strategies"] = event_driven(panel, coins)
+    packs["Execution Algorithms (VWAP, TWAP, POV, IS)"] = execution_algos(panel, coins)
+    packs["Multi-Factor / Factor Investing"] = multi_factor(panel, coins)
+    packs["Volatility Arbitrage"] = volatility_arbitrage(panel, coins)
+    packs["Cross-Exchange Arbitrage (Crypto)"] = cross_exchange_arbitrage(panel, coins)
+    packs["Liquidity Provision Bots (Crypto)"] = liquidity_provision(panel, coins)
+    packs["Pairs Trading"] = pairs_trading(panel, coins)
+    packs["Basket Trading"] = basket_trading(panel, coins)
+    packs["Reinforcement Learning Trading"] = reinforcement_learning(panel, coins)
+    packs["Sentiment/NLP-Based Trading"] = sentiment_nlp(panel, coins)
+    packs["Merger Arbitrage (Event-Driven subtype)"] = merger_arbitrage(panel, coins)
+
+    return packs
