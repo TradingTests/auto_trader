@@ -8,6 +8,15 @@ from datetime import datetime, timezone
 STATE_FILE = "backend/data/portfolio_state.json"
 
 
+
+@dataclass
+class AlgoState:
+    cash: float = 1000.0
+    holdings: Dict[str, float] = field(default_factory=dict)
+    equity_history: List[dict] = field(default_factory=list)
+    total_trades: int = 0
+    tax_paid: float = 0.0
+
 @dataclass
 class PortfolioState:
     """Persisted across runs - this is the 'memory' of the trader"""
