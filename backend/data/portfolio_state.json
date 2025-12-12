@@ -1,0 +1,28 @@
+{
+  "cash": 1000.0,
+  "holdings": {},
+  "total_trades": 0,
+  "total_tax_paid": 0.0,
+  "total_realized_pnl": 0.0,
+  "initial_capital": 1000.0,
+  "high_water_mark": 1000.0,
+  "max_drawdown_pct": 0.0,
+  "equity_history": [
+    {
+      "ts": "2025-12-12T09:57:21.100490+00:00",
+      "value": 1000.0,
+      "cash": 1000.0
+    }
+  ],
+  "last_run_at": "2025-12-12T09:57:21.100490+00:00",
+  "last_prices": {
+    "ton": 1.633,
+    "ada": 0.4238,
+    "btc": 92249.97,
+    "doge": 0.1407,
+    "eth": 3252.44,
+    "sol": 137.745,
+    "xrp": 2.03
+  },
+  "strategy_pnl": {}
+}

@@ -1,10 +1,6 @@
 {
-  "updated_at": "2025-12-12T09:45:18.887293+00:00",
-  "runs": [
-    "run_20251212_093338.json",
-    "run_20251212_094235.json",
-    "run_20251212_094328.json",
-    "run_20251212_094518.json"
-  ],
-  "latest": "latest.json"
+  "updated_at": "2025-12-12T09:57:21.152370+00:00",
+  "latest": "latest.json",
+  "history": "history.json",
+  "total_history_points": 1
 }
