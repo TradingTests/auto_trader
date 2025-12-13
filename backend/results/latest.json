@@ -60,18 +60,6 @@
       "tax_paid": 1.9944
     },
     {
-      "algorithm": "High-Frequency Trading (HFT)",
-      "value": 997.5073,
-      "return_lookback_pct": 0.0,
-      "holdings": [
-        "eth",
-        "ton",
-        "xrp"
-      ],
-      "trades": 3,
-      "tax_paid": 1.9944
-    },
-    {
       "algorithm": "Machine Learning / AI-Based Strategies",
       "value": 997.5073,
       "return_lookback_pct": 0.0,
@@ -121,6 +109,18 @@
     },
     {
       "algorithm": "Volatility Arbitrage",
+      "value": 997.5073,
+      "return_lookback_pct": 0.0,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 3,
+      "tax_paid": 1.9944
+    },
+    {
+      "algorithm": "Cross-Exchange Arbitrage (Crypto)",
       "value": 997.5073,
       "return_lookback_pct": 0.0,
       "holdings": [
@@ -182,6 +182,11 @@
   },
   "actions_this_run": [],
   "equity_history": [
+    {
+      "ts": "2025-12-12T11:47:33.842919+00:00",
+      "value": 997.5073,
+      "cash": 0.825
+    },
     {
       "ts": "2025-12-12T11:47:33.842919+00:00",
       "value": 997.5073,
