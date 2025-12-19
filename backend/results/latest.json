@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-19T09:59:11.704736+00:00",
+  "generated_at": "2025-12-19T10:33:07.814685+00:00",
   "prices_used": {},
   "selected_algorithm": "Trend Following (Momentum)",
   "algorithm_leaderboard": [],
@@ -288,6 +288,11 @@
     },
     {
       "ts": "2025-12-19T09:59:11.704736+00:00",
+      "value": 0.825,
+      "cash": 0.825
+    },
+    {
+      "ts": "2025-12-19T10:33:07.814685+00:00",
       "value": 0.825,
       "cash": 0.825
     }
