@@ -4005,5 +4005,12 @@
   "pnl_pct": -99.9175,
   "selected_algorithm": "Trend Following (Momentum)",
   "actions": 0
+ },
+ {
+  "ts": "2025-12-22T03:53:54.878584+00:00",
+  "value": 0.825,
+  "pnl_pct": -99.9175,
+  "selected_algorithm": "Trend Following (Momentum)",
+  "actions": 0
  }
 ]
