@@ -11936,5 +11936,12 @@
   "pnl_pct": -99.9175,
   "selected_algorithm": "Event-Driven Strategies",
   "actions": 0
+ },
+ {
+  "ts": "2026-01-23T04:54:43.202322+00:00",
+  "value": 0.825,
+  "pnl_pct": -99.9175,
+  "selected_algorithm": "Event-Driven Strategies",
+  "actions": 0
  }
 ]
