@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-23T17:55:29.892522+00:00",
+  "generated_at": "2026-01-23T18:37:34.543372+00:00",
   "prices_used": {},
   "selected_algorithm": "Event-Driven Strategies",
   "algorithm_leaderboard": [],
@@ -163,6 +163,11 @@
     },
     {
       "ts": "2026-01-23T17:55:29.892522+00:00",
+      "value": 0.825,
+      "cash": 0.825
+    },
+    {
+      "ts": "2026-01-23T18:37:34.543372+00:00",
       "value": 0.825,
       "cash": 0.825
     }
