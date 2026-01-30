@@ -1,14 +1,5 @@
 [
  {
-  "ts": "2025-12-12T09:57:21.100490+00:00",
-  "value": 1000.0,
-  "cash": 1000.0,
-  "pnl_pct": 0.0,
-  "trades": 0,
-  "actions": 0,
-  "holdings": []
- },
- {
   "ts": "2025-12-12T10:31:06.517219+00:00",
   "value": 1000.0,
   "cash": 1000.0,
@@ -14004,6 +13995,13 @@
  },
  {
   "ts": "2026-01-30T11:06:43.999420+00:00",
+  "value": 0.825,
+  "pnl_pct": -99.9175,
+  "selected_algorithm": "Event-Driven Strategies",
+  "actions": 0
+ },
+ {
+  "ts": "2026-01-30T11:41:30.546479+00:00",
   "value": 0.825,
   "pnl_pct": -99.9175,
   "selected_algorithm": "Event-Driven Strategies",
