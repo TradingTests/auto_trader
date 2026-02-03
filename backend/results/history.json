@@ -1,12 +1,5 @@
 [
  {
-  "ts": "2025-12-14T12:30:04.873615+00:00",
-  "value": 0.825,
-  "pnl_pct": -99.9175,
-  "selected_algorithm": "Trend Following (Momentum)",
-  "actions": 0
- },
- {
   "ts": "2025-12-14T13:06:44.942812+00:00",
   "value": 0.825,
   "pnl_pct": -99.9175,
@@ -13994,6 +13987,13 @@
  },
  {
   "ts": "2026-02-03T12:27:30.159679+00:00",
+  "value": 0.825,
+  "pnl_pct": -99.9175,
+  "selected_algorithm": "Event-Driven Strategies",
+  "actions": 0
+ },
+ {
+  "ts": "2026-02-03T13:44:06.872488+00:00",
   "value": 0.825,
   "pnl_pct": -99.9175,
   "selected_algorithm": "Event-Driven Strategies",
