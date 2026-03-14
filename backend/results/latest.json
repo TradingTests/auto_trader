@@ -1,10 +1,172 @@
 {
-  "generated_at": "2026-03-14T07:55:05.709312+00:00",
-  "prices_used": {},
+  "generated_at": "2026-03-14T08:36:59.481199+00:00",
+  "prices_used": {
+    "ada": 0.262,
+    "btc": 70521.32,
+    "doge": 0.094904,
+    "eth": 2080.42,
+    "sol": 87.5,
+    "ton": 1.292,
+    "xrp": 1.39092
+  },
   "selected_algorithm": "Trend Following (Momentum)",
-  "algorithm_leaderboard": [],
-  "winner_target_allocations": {},
-  "winner_top_coin_scores": [],
+  "algorithm_leaderboard": [
+    {
+      "algorithm": "Trend Following (Momentum)",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Mean Reversion",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Statistical Arbitrage",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Machine Learning / AI-Based Strategies",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Execution Algorithms (VWAP, TWAP, POV, IS)",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Volatility Arbitrage",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Cross-Exchange Arbitrage (Crypto)",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Pairs Trading",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Basket Trading",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    },
+    {
+      "algorithm": "Reinforcement Learning Trading",
+      "value": 675.1128,
+      "return_lookback_pct": -32.32,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 14,
+      "tax_paid": 2.3084
+    }
+  ],
+  "winner_target_allocations": {
+    "ada": 0.5,
+    "btc": 0.3333333333333333,
+    "doge": 0.16666666666666666
+  },
+  "winner_top_coin_scores": [
+    {
+      "coin": "ada",
+      "score": 0.0
+    },
+    {
+      "coin": "btc",
+      "score": 0.0
+    },
+    {
+      "coin": "doge",
+      "score": 0.0
+    },
+    {
+      "coin": "eth",
+      "score": 0.0
+    },
+    {
+      "coin": "sol",
+      "score": 0.0
+    },
+    {
+      "coin": "ton",
+      "score": 0.0
+    },
+    {
+      "coin": "xrp",
+      "score": 0.0
+    }
+  ],
   "main": {
     "value": 0.825,
     "cash": 0.825,
@@ -16,11 +178,6 @@
   },
   "actions_this_run": [],
   "equity_history": [
-    {
-      "ts": "2026-03-13T08:03:19.168522+00:00",
-      "value": 0.825,
-      "cash": 0.825
-    },
     {
       "ts": "2026-03-13T08:55:36.688680+00:00",
       "value": 0.825,
@@ -98,6 +255,11 @@
     },
     {
       "ts": "2026-03-14T07:55:05.709312+00:00",
+      "value": 0.825,
+      "cash": 0.825
+    },
+    {
+      "ts": "2026-03-14T08:36:59.481199+00:00",
       "value": 0.825,
       "cash": 0.825
     }
