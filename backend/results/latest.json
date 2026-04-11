@@ -1,10 +1,172 @@
 {
-  "generated_at": "2026-04-11T09:51:55.342974+00:00",
-  "prices_used": {},
+  "generated_at": "2026-04-11T10:26:28.498482+00:00",
+  "prices_used": {
+    "ada": 0.2511,
+    "btc": 72793.12,
+    "doge": 0.092798,
+    "eth": 2247.53,
+    "sol": 84.203,
+    "ton": 1.355,
+    "xrp": 1.34985
+  },
   "selected_algorithm": "Trend Following (Momentum)",
-  "algorithm_leaderboard": [],
-  "winner_target_allocations": {},
-  "winner_top_coin_scores": [],
+  "algorithm_leaderboard": [
+    {
+      "algorithm": "Trend Following (Momentum)",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Mean Reversion",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Statistical Arbitrage",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Machine Learning / AI-Based Strategies",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Execution Algorithms (VWAP, TWAP, POV, IS)",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Volatility Arbitrage",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Cross-Exchange Arbitrage (Crypto)",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Pairs Trading",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Basket Trading",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    },
+    {
+      "algorithm": "Reinforcement Learning Trading",
+      "value": 665.8167,
+      "return_lookback_pct": -33.252,
+      "holdings": [
+        "ada",
+        "btc",
+        "doge"
+      ],
+      "trades": 16,
+      "tax_paid": 2.3479
+    }
+  ],
+  "winner_target_allocations": {
+    "ada": 0.5,
+    "btc": 0.3333333333333333,
+    "doge": 0.16666666666666666
+  },
+  "winner_top_coin_scores": [
+    {
+      "coin": "ada",
+      "score": 0.0
+    },
+    {
+      "coin": "btc",
+      "score": 0.0
+    },
+    {
+      "coin": "doge",
+      "score": 0.0
+    },
+    {
+      "coin": "eth",
+      "score": 0.0
+    },
+    {
+      "coin": "sol",
+      "score": 0.0
+    },
+    {
+      "coin": "ton",
+      "score": 0.0
+    },
+    {
+      "coin": "xrp",
+      "score": 0.0
+    }
+  ],
   "main": {
     "value": 0.825,
     "cash": 0.825,
@@ -133,6 +295,11 @@
     },
     {
       "ts": "2026-04-11T09:51:55.342974+00:00",
+      "value": 0.825,
+      "cash": 0.825
+    },
+    {
+      "ts": "2026-04-11T10:26:28.498482+00:00",
       "value": 0.825,
       "cash": 0.825
     }
