@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T10:48:04.120489+00:00",
+  "generated_at": "2026-04-12T11:23:30.202667+00:00",
   "prices_used": {},
   "selected_algorithm": "Trend Following (Momentum)",
   "algorithm_leaderboard": [],
@@ -18,6 +18,11 @@
   "equity_history": [
     {
       "ts": "2026-04-12T10:48:04.120489+00:00",
+      "value": 0.825,
+      "cash": 0.825
+    },
+    {
+      "ts": "2026-04-12T11:23:30.202667+00:00",
       "value": 0.825,
       "cash": 0.825
     }
